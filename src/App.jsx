@@ -1,43 +1,50 @@
 import './App.css';
 
-import { useEffect, useState } from 'react';
+import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom';
 
-import { strava_access_token } from '../secrets';
+import { About } from './pages/About';
+import { Home } from './pages/Home';
+import { Portfolio } from './pages/Portfolio';
+import { Resume } from './pages/Resume';
 
 function App() {
-  const { isLoading, activities, error } = useStravaActivities();
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error.message}</p>;
-  }
-
   return (
-    <>
-      <p>{JSON.stringify(activities)}</p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<RootLayout />}>
+          <Route index element={<Home />} />
+          <Route path='about' element={<About />} />
+          <Route path='resume' element={<Resume />} />
+          <Route path='portfolio' element={<Portfolio />} />
+          <Route path='*' element={<p>Not Found</p>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
 
-export const strava_base_url = 'https://www.strava.com/api/v3';
-
-function useStravaActivities() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [activities, setActivities] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch(`${strava_base_url}/athlete/activities?access_token=${strava_access_token}`)
-      .then((response) => response.json())
-      .then((data) => setActivities(data))
-      .then(() => setIsLoading(false))
-      .catch((error) => setError(error));
-  }, []);
-
-  return { isLoading, activities, error };
+function RootLayout() {
+  return (
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/about'>About</Link>
+          </li>
+          <li>
+            <Link to='/resume'>Resume</Link>
+          </li>
+          <li>
+            <Link to='/portfolio'>Portfolio</Link>
+          </li>
+        </ul>
+      </nav>
+      <Outlet />
+    </div>
+  );
 }
