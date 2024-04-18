@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+
+import { useEffect, useState } from 'react';
+
+import { strava_access_token } from '../secrets';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isLoading, activities, error } = useStravaActivities();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <p>{JSON.stringify(activities)}</p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
+export const strava_base_url = 'https://www.strava.com/api/v3';
+
+export function useStravaActivities() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [activities, setActivities] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch(`${strava_base_url}/athlete/activities?access_token=${strava_access_token}`)
+      .then((response) => response.json())
+      .then((data) => setActivities(data))
+      .then(() => setIsLoading(false))
+      .catch((error) => setError(error));
+  }, []);
+
+  return { isLoading, activities, error };
+}
