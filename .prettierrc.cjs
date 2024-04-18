@@ -11,10 +11,11 @@ module.exports = {
   "requirePragma": false,
   "semi": true,
   "singleQuote": true,
-  "trailingComma": "none",
+  "trailingComma": "all",
   "useTabs": false,
   "vueIndentScriptAndStyle": false,
   "printWidth": 140,
   "tabWidth": 2,
-  "rangeStart": 0
+  "rangeStart": 0,
+  "autoFix": true
 }

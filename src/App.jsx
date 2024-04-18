@@ -26,7 +26,7 @@ export default App;
 
 export const strava_base_url = 'https://www.strava.com/api/v3';
 
-export function useStravaActivities() {
+function useStravaActivities() {
   const [isLoading, setIsLoading] = useState(true);
   const [activities, setActivities] = useState([]);
   const [error, setError] = useState(null);
