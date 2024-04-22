@@ -1,5 +1,6 @@
 import './App.css';
 
+import Button from '@mui/material/Button';
 import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom';
 
 import { About } from './pages/About';
@@ -31,7 +32,9 @@ function RootLayout() {
       <nav>
         <ul>
           <li>
-            <Link to='/'>Home</Link>
+            <Link to='/'>
+              <Button variant='outlined'>Hello world</Button>
+            </Link>
           </li>
           <li>
             <Link to='/about'>About</Link>
