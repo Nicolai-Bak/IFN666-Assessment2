@@ -1,6 +1,10 @@
 import './App.css';
 
+import { Menu } from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, IconButton, MenuItem, Toolbar, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
 import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom';
 
 import { About } from './pages/About';
@@ -28,26 +32,32 @@ export default App;
 
 function RootLayout() {
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to='/'>
-              <Button variant='outlined'>Hello world</Button>
-            </Link>
-          </li>
-          <li>
-            <Link to='/about'>About</Link>
-          </li>
-          <li>
-            <Link to='/resume'>Resume</Link>
-          </li>
-          <li>
-            <Link to='/portfolio'>Portfolio</Link>
-          </li>
-        </ul>
-      </nav>
+    <>
+      <AppBar position='fixed' style={{ background: 'transparent', boxShadow: 'none' }}>
+        <Toolbar>
+          <Box sx={{ flexGrow: 1, display: 'flex' }}>
+            <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+              Nicolai Bak
+            </Typography>
+            <Box>
+              <Button href='/'>
+                <Link to='/'>Home</Link>
+              </Button>
+              <Button>
+                <Link to='/about'>About</Link>
+              </Button>
+              <Button>
+                <Link to='/resume'>Resume</Link>
+              </Button>
+              <Button>
+                <Link to='/portfolio'>Portfolio</Link>
+              </Button>
+            </Box>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
       <Outlet />
-    </div>
+    </>
   );
 }
