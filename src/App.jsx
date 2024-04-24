@@ -23,6 +23,8 @@ function App() {
               body: {
                 backgroundImage: 'repeating-linear-gradient( transparent,rgb(54, 175, 255))',
                 backgroundAttachment: 'fixed',
+                maxWidth: '100%',
+                marginRight: 'calc(100% - 100vw)',
               },
             },
           },
