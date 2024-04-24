@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { strava_access_token } from '../../secrets';
 
@@ -25,10 +26,12 @@ export function Portfolio() {
   return (
     <>
       {activities.map((activity) => (
-        <Card raised key={activity.id} sx={{ backgroundColor: 'transparent', marginBottom: '16px' }}>
-          <CardHeader title={activity.name} />
-          <CardContent>{activity.start_date}</CardContent>
-        </Card>
+        <Link key={activity.id} to={`${activity.id}`} state={{ activity: activity }}>
+          <Card raised sx={{ backgroundColor: 'transparent', marginBottom: '16px' }}>
+            <CardHeader title={activity.name} />
+            <CardContent>{activity.start_date}</CardContent>
+          </Card>
+        </Link>
       ))}
     </>
   );

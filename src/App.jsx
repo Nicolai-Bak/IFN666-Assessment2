@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { RootLayout } from './layouts/RootLayout';
 import { About } from './pages/About';
+import { Activity } from './pages/Activity';
 import { Home } from './pages/Home';
 import { Portfolio } from './pages/Portfolio';
 import { Resume } from './pages/Resume';
@@ -43,6 +44,7 @@ function App() {
             <Route path='about' element={<About />} />
             <Route path='resume' element={<Resume />} />
             <Route path='portfolio' element={<Portfolio />} />
+            <Route path='portfolio/:id' element={<Activity />} />
             <Route path='*' element={<p>Not Found</p>} />
           </Route>
         </Routes>
