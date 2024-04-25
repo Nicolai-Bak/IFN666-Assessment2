@@ -1,8 +1,7 @@
 import { Card, CardContent, CardHeader, Skeleton } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { strava_access_token } from '../../secrets';
+import { useStravaActivities } from '../hooks/useStravaActivities';
 
 export function Portfolio() {
   const { isLoading, activities, error } = useStravaActivities();
@@ -26,7 +25,7 @@ export function Portfolio() {
   return (
     <>
       {activities.map((activity) => (
-        <Link key={activity.id} to={`${activity.id}`} state={{ activity: activity }}>
+        <Link key={activity.id} to={`${activity.id}`}>
           <Card raised sx={{ backgroundColor: 'transparent', marginBottom: '16px' }}>
             <CardHeader title={activity.name} />
             <CardContent>{activity.start_date}</CardContent>
@@ -35,27 +34,4 @@ export function Portfolio() {
       ))}
     </>
   );
-}
-
-const strava_base_url = 'https://www.strava.com/api/v3';
-
-function useStravaActivities() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [activities, setActivities] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch(`${strava_base_url}/athlete/activities?access_token=${strava_access_token}`)
-      .then((response) => {
-        if (response.status === 401) {
-          throw new Error('Unauthorized');
-        }
-        return response.json();
-      })
-      .then((data) => setActivities(data))
-      .then(() => setIsLoading(false))
-      .catch((error) => setError(error));
-  }, []);
-
-  return { isLoading, activities, error };
 }
