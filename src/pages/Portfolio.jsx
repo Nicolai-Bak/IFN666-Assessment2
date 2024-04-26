@@ -25,10 +25,10 @@ export function Portfolio() {
   return (
     <>
       {activities.map((activity) => (
-        <Link key={activity.id} to={`${activity.id}`}>
+        <Link key={activity.id} to={`${activity.id}`} style={{ textDecoration: 'none' }}>
           <Card raised sx={{ backgroundColor: 'transparent', marginBottom: '16px' }}>
             <CardHeader title={activity.name} />
-            <CardContent>{activity.start_date}</CardContent>
+            <CardContent>{activity.start_date.split('T')[0]}</CardContent>
           </Card>
         </Link>
       ))}
