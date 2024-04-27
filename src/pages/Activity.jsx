@@ -38,9 +38,9 @@ export function Activity() {
             <MapCard polyline={activity.map.polyline} />
           </Grid>
         )}
-      </Grid>
-      <Grid item xs={12}>
-        <LapCard laps={activity.laps} />
+        <Grid item xs={12}>
+          <LapCard laps={activity.laps} />
+        </Grid>
       </Grid>
     </div>
   );
