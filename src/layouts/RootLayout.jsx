@@ -1,4 +1,4 @@
-import { Box, Toolbar } from '@mui/material';
+import { Box, Toolbar, Typography } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 import { NavigationBar } from '../components/NavigationBar';
@@ -20,10 +20,16 @@ export function RootLayout() {
           </Box>
         </Toolbar>
       </NavigationBar>
-
       <PageLayout>
         <Outlet />
       </PageLayout>
+
+      {/* TODO move style to css file */}
+      <footer style={{ position: 'static', bottom: 0, width: '100%', height: '64px', alignContent: 'center' }}>
+        <Typography variant='subtitle2' sx={{ flexGrow: 1, textAlign: 'center' }}>
+          &copy; 2024 Nicolai Bak
+        </Typography>
+      </footer>
     </>
   );
 }
