@@ -1,7 +1,9 @@
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import MapIcon from '@mui/icons-material/Map';
 import TimerIcon from '@mui/icons-material/Timer';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { GoogleMap, Polyline } from 'react-google-map-wrapper';
 import { useParams } from 'react-router-dom';
 
 import { useStravaActivity } from '../hooks/useStravaActivity';
@@ -23,18 +25,77 @@ export function Activity() {
   return (
     <div>
       <Grid container spacing={1}>
-        <Grid item xs={6}>
+        <Grid item xs={activity.start_latlng[0] ? 6 : 12}>
           <ActivityCard activity={activity} />
         </Grid>
-        <Grid item xs={6}>
-          <WeatherCard lat={activity.start_latlng[0]} lon={activity.start_latlng[1]} date={activity.start_date} />
-        </Grid>
-        <Grid item xs={12}>
-          <LapCard laps={activity.laps} />
-        </Grid>
+        {activity.start_latlng[0] && (
+          <Grid item xs={6}>
+            <WeatherCard lat={activity.start_latlng[0]} lon={activity.start_latlng[1]} date={activity.start_date} />
+          </Grid>
+        )}
+        {activity.map.polyline && (
+          <Grid item xs={12}>
+            <MapCard polyline={activity.map.polyline} />
+          </Grid>
+        )}
       </Grid>
-      {/* <span>{JSON.stringify(activity)}</span> */}
+      <Grid item xs={12}>
+        <LapCard laps={activity.laps} />
+      </Grid>
     </div>
+  );
+}
+
+function MapCard({ polyline }) {
+  function decodePolyline(polyline) {
+    let index = 0,
+      lat = 0,
+      lng = 0,
+      coordinates = [],
+      shift = 0,
+      result = 0,
+      byte = null,
+      latitude_change,
+      longitude_change;
+
+    while (index < polyline.length) {
+      byte = null;
+      shift = 0;
+      result = 0;
+      do {
+        byte = polyline.charCodeAt(index++) - 63;
+        result |= (byte & 0x1f) << shift;
+        shift += 5;
+      } while (byte >= 0x20);
+
+      latitude_change = result & 1 ? ~(result >> 1) : result >> 1;
+      shift = result = 0;
+
+      do {
+        byte = polyline.charCodeAt(index++) - 63;
+        result |= (byte & 0x1f) << shift;
+        shift += 5;
+      } while (byte >= 0x20);
+
+      longitude_change = result & 1 ? ~(result >> 1) : result >> 1;
+      lat += latitude_change;
+      lng += longitude_change;
+
+      coordinates.push({ lat: lat / 1e5, lng: lng / 1e5 });
+    }
+
+    return coordinates;
+  }
+  const coordinates = decodePolyline(polyline);
+  const latMedian = coordinates.reduce((acc, coord) => acc + coord.lat, 0) / coordinates.length;
+  const lngMedian = coordinates.reduce((acc, coord) => acc + coord.lng, 0) / coordinates.length;
+
+  return (
+    <CardBase title='Map' img={<MapIcon sx={{ height: '65px', width: '65px', padding: '14.5px' }} />}>
+      <GoogleMap style={{ minHeight: '350px' }} initialZoom={14} initialCenter={{ lat: latMedian, lng: lngMedian }}>
+        <Polyline path={decodePolyline(polyline)} strokeColor='#FF0000' strokeOpacity={1.0} strokeWeight={2} geodesic />
+      </GoogleMap>{' '}
+    </CardBase>
   );
 }
 

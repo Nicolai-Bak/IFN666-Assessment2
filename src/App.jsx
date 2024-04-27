@@ -1,7 +1,9 @@
 import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material';
 import { useMemo } from 'react';
+import { GoogleMapApiLoader } from 'react-google-map-wrapper';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { google_api_key } from '../secrets';
 import { RootLayout } from './layouts/RootLayout';
 import { About } from './pages/About';
 import { Activity } from './pages/Activity';
@@ -36,19 +38,21 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<RootLayout />}>
-            <Route index element={<Home />} />
-            <Route path='about' element={<About />} />
-            <Route path='resume' element={<Resume />} />
-            <Route path='portfolio' element={<Portfolio />} />
-            <Route path='portfolio/:id' element={<Activity />} />
-            <Route path='*' element={<p>Not Found</p>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <GoogleMapApiLoader apiKey={google_api_key}>
+        <CssBaseline />
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<RootLayout />}>
+              <Route index element={<Home />} />
+              <Route path='about' element={<About />} />
+              <Route path='resume' element={<Resume />} />
+              <Route path='portfolio' element={<Portfolio />} />
+              <Route path='portfolio/:id' element={<Activity />} />
+              <Route path='*' element={<p>Not Found</p>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </GoogleMapApiLoader>
     </ThemeProvider>
   );
 }
