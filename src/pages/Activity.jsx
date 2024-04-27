@@ -1,7 +1,7 @@
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import TimerIcon from '@mui/icons-material/Timer';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 import { useStravaActivity } from '../hooks/useStravaActivity';
@@ -22,30 +22,25 @@ export function Activity() {
   }
   return (
     <div>
-      <ActivityCard activity={activity} />
-      <WeatherCard lat={activity.start_latlng[0]} lon={activity.start_latlng[1]} date={activity.start_date} />
-      <LapCard laps={activity.laps} />
-      <br />
+      <Grid container spacing={1}>
+        <Grid item xs={6}>
+          <ActivityCard activity={activity} />
+        </Grid>
+        <Grid item xs={6}>
+          <WeatherCard lat={activity.start_latlng[0]} lon={activity.start_latlng[1]} date={activity.start_date} />
+        </Grid>
+        <Grid item xs={12}>
+          <LapCard laps={activity.laps} />
+        </Grid>
+      </Grid>
       {/* <span>{JSON.stringify(activity)}</span> */}
     </div>
   );
 }
 
 function LapCard({ laps }) {
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
-
   return (
-    <CardBase title='Laps' img={<TimerIcon fontSize='large' sx={{ margin: '10px' }} />}>
+    <CardBase title='Laps' img={<TimerIcon sx={{ height: '65px', width: '65px', padding: '14.5px' }} />}>
       <TableContainer component={Paper} sx={{ backgroundColor: 'transparent' }}>
         <Table sx={{ minWidth: 350 }} size='small' aria-label='a dense table'>
           <TableHead>
@@ -102,9 +97,14 @@ function WeatherCard({ lat, lon, date }) {
   return (
     <>
       {/* <p> {JSON.stringify(weather)} </p> */}
-      <CardBase title='Weather' img={<img src={weather.forecast.forecastday[0].day.condition.icon} alt='Weather icon' />}>
+      <CardBase
+        sx={{ minHeight: '100%' }}
+        title='Weather'
+        img={<img src={weather.forecast.forecastday[0].day.condition.icon} alt='Weather icon' />}
+      >
         <Typography variant='body2'>
-          <Typography>Location: {weather.location.name}</Typography>
+          Location: {weather.location.name}
+          <br />
           Date: {weather.forecast.forecastday[0].date}
           <br />
           Max Temp: {weather.forecast.forecastday[0].day.maxtemp_c}°C
@@ -124,16 +124,16 @@ export function ActivityCard({ activity }) {
   const activityIcon = (() => {
     switch (activity.type) {
       case 'Run':
-        return <DirectionsRunIcon fontSize='large' sx={{ margin: '10px' }} />;
+        return <DirectionsRunIcon sx={{ height: '65px', width: '65px', padding: '14.5px' }} />;
       case 'Ride':
-        return <DirectionsBikeIcon fontSize='large' sx={{ margin: '10px' }} />;
+        return <DirectionsBikeIcon sx={{ height: '65px', width: '65px', padding: '14.5px' }} />;
       default:
         return <></>;
     }
   })();
 
   return (
-    <CardBase title={activity.name} img={activityIcon}>
+    <CardBase sx={{ minHeight: '100%' }} title={activity.name} img={activityIcon}>
       <Typography variant='body2'>
         Distance: {activity.distance} meters
         <br />
