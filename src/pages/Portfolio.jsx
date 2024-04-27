@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, Skeleton } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { useStravaActivities } from '../hooks/useStravaActivities';
+import { ErrorCard } from './ErrorCard';
 
 export function Portfolio() {
   const { isLoading, activities, error } = useStravaActivities();
@@ -13,13 +14,7 @@ export function Portfolio() {
   }
 
   if (error) {
-    return (
-      <>
-        <Card sx={{ backgroundColor: 'error.main' }}>
-          <CardHeader title={error.message} sx={{ textAlign: 'center', color: 'text.secondary' }} />
-        </Card>
-      </>
-    );
+    return <ErrorCard errorMessage={error.message} />;
   }
 
   return (
