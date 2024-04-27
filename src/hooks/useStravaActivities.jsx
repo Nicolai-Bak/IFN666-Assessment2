@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { strava_access_token, strava_base_url } from '../../secrets';
-
 export function useStravaActivities() {
   const [isLoading, setIsLoading] = useState(true);
   const [activities, setActivities] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${strava_base_url}/athlete/activities?access_token=${strava_access_token}`)
+    fetch(`${import.meta.env.VITE_STRAVA_BASE_URL}/athlete/activities?access_token=${import.meta.env.VITE_STRAVA_ACCESS_TOKEN}`)
       .then((response) => {
         if (response.status === 401) {
           throw new Error('Unauthorized');

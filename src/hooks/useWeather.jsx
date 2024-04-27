@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { weather_api_key } from '../../secrets';
-
 export function useWeather(lat, lon, date) {
   const [isLoading, setIsLoading] = useState(true);
   const [weather, setWeather] = useState(null);
@@ -13,7 +11,7 @@ export function useWeather(lat, lon, date) {
       setIsLoading(false);
       return;
     }
-    fetch(`http://api.weatherapi.com/v1/history.json?key=${weather_api_key}&q=${lat},${lon}&dt=${date}`)
+    fetch(`http://api.weatherapi.com/v1/history.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${lat},${lon}&dt=${date}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

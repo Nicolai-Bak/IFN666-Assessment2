@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import { strava_access_token, strava_base_url } from '../../secrets';
-
 export function useStravaActivity(id) {
   const [isLoading, setIsLoading] = useState(true);
   const [activity, setActivity] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${strava_base_url}/activities/${id}`, {
+    fetch(`${import.meta.env.VITE_STRAVA_BASE_URL}/activities/${id}`, {
       headers: {
-        Authorization: 'Bearer ' + strava_access_token,
+        Authorization: 'Bearer ' + import.meta.env.VITE_STRAVA_ACCESS_TOKEN,
       },
     })
       .then((response) => {

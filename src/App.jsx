@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import { GoogleMapApiLoader } from 'react-google-map-wrapper';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { google_api_key } from '../secrets';
 import { RootLayout } from './layouts/RootLayout';
 import { About } from './pages/About';
 import { Activity } from './pages/Activity';
@@ -38,7 +37,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <GoogleMapApiLoader apiKey={google_api_key}>
+      <GoogleMapApiLoader apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
         <CssBaseline />
         <BrowserRouter>
           <Routes>
