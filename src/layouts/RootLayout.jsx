@@ -25,7 +25,7 @@ export function RootLayout() {
       </PageLayout>
 
       {/* TODO move style to css file */}
-      <footer style={{ position: 'static', bottom: 0, width: '100%', height: '64px', alignContent: 'center' }}>
+      <footer>
         <Typography variant='subtitle2' sx={{ flexGrow: 1, textAlign: 'center' }}>
           &copy; 2024 Nicolai Bak
         </Typography>

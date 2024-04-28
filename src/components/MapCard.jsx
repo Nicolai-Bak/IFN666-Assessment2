@@ -49,7 +49,7 @@ export function MapCard({ polyline }) {
 
   return (
     <CardBase title='Map' img={<MapIcon sx={{ height: '65px', width: '65px', padding: '14.5px' }} />}>
-      <GoogleMap style={{ minHeight: '350px' }} initialZoom={14} initialCenter={{ lat: latMedian, lng: lngMedian }}>
+      <GoogleMap className='map' initialZoom={14} initialCenter={{ lat: latMedian, lng: lngMedian }}>
         <Polyline path={decodePolyline(polyline)} strokeColor='#FF0000' strokeOpacity={1} strokeWeight={2} geodesic />
       </GoogleMap>{' '}
     </CardBase>

@@ -2,11 +2,11 @@ import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, Typography } 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { ActivityIcon } from '../components/ActivityIcon';
+import { CardBase } from '../components/CardBase';
+import { CardSkeleton } from '../components/CardSkeleton';
+import { ErrorCard } from '../components/ErrorCard';
 import { useStravaActivities } from '../hooks/useStravaActivities';
-import { ActivityIcon } from './ActivityIcon';
-import { CardBase } from './CardBase';
-import { CardSkeleton } from './CardSkeleton';
-import { ErrorCard } from './ErrorCard';
 
 export function Portfolio() {
   const { isLoading, activities, error } = useStravaActivities();
@@ -56,7 +56,7 @@ export function Portfolio() {
         </Select>
       </FormControl>
       {(activityTypes.length > 0 ? activities.filter((activity) => activityTypes.includes(activity.type)) : activities).map((activity) => (
-        <Link key={activity.id} to={`${activity.id}`} style={{ textDecoration: 'none' }}>
+        <Link key={activity.id} to={`${activity.id}`}>
           <CardBase title={activity.name} img={<ActivityIcon type={activity.type} />} sx={{ marginBottom: '16px' }}>
             <Typography variant='body2'>{activity.start_date.split('T')[0]}</Typography>
           </CardBase>

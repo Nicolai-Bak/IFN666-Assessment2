@@ -1,14 +1,14 @@
 import { Grid, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
+import { ActivityIcon } from '../components/ActivityIcon';
+import { CardBase } from '../components/CardBase';
+import { CardSkeleton } from '../components/CardSkeleton';
+import { ErrorCard } from '../components/ErrorCard';
+import { LapCard } from '../components/LapCard';
+import { MapCard } from '../components/MapCard';
 import { useStravaActivity } from '../hooks/useStravaActivity';
 import { useWeather } from '../hooks/useWeather';
-import { ActivityIcon } from './ActivityIcon';
-import { CardBase } from './CardBase';
-import { CardSkeleton } from './CardSkeleton';
-import { ErrorCard } from './ErrorCard';
-import { LapCard } from './LapCard';
-import { MapCard } from './MapCard';
 
 export function Activity() {
   const { id } = useParams();

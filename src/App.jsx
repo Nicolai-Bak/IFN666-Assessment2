@@ -1,3 +1,5 @@
+import './App.css';
+
 import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material';
 import { useMemo } from 'react';
 import { GoogleMapApiLoader } from 'react-google-map-wrapper';
