@@ -1,8 +1,11 @@
-import { Card, CardContent, CardHeader, FormControl, InputLabel, MenuItem, OutlinedInput, Select, Skeleton } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useStravaActivities } from '../hooks/useStravaActivities';
+import { ActivityIcon } from './ActivityIcon';
+import { CardBase } from './CardBase';
+import { CardSkeleton } from './CardSkeleton';
 import { ErrorCard } from './ErrorCard';
 
 export function Portfolio() {
@@ -12,9 +15,9 @@ export function Portfolio() {
   if (isLoading) {
     return (
       <>
-        <Skeleton variant='rectangular' sx={{ width: '300px', height: '56px', marginBottom: '16px' }} />
+        <CardSkeleton sx={{ width: '300px', height: '56px', marginBottom: '16px' }} />
         {Array.from({ length: 5 }).map((_, index) => (
-          <Skeleton key={index} variant='rectangular' sx={{ height: '128px', marginBottom: '16px' }} />
+          <CardSkeleton key={index} sx={{ height: '128px', marginBottom: '16px' }} />
         ))}
       </>
     );
@@ -54,10 +57,9 @@ export function Portfolio() {
       </FormControl>
       {(activityTypes.length > 0 ? activities.filter((activity) => activityTypes.includes(activity.type)) : activities).map((activity) => (
         <Link key={activity.id} to={`${activity.id}`} style={{ textDecoration: 'none' }}>
-          <Card raised sx={{ backgroundColor: 'transparent', marginBottom: '16px' }}>
-            <CardHeader title={activity.name} />
-            <CardContent>{activity.start_date.split('T')[0]}</CardContent>
-          </Card>
+          <CardBase title={activity.name} img={<ActivityIcon type={activity.type} />} sx={{ marginBottom: '16px' }}>
+            <Typography variant='body2'>{activity.start_date.split('T')[0]}</Typography>
+          </CardBase>
         </Link>
       ))}
     </>
