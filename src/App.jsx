@@ -7,14 +7,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { RootLayout } from './layouts/RootLayout';
 import { About } from './pages/About';
+import { Activities } from './pages/Activities';
 import { Activity } from './pages/Activity';
 import { Home } from './pages/Home';
-import { Portfolio } from './pages/Portfolio';
 import { Resume } from './pages/Resume';
 
 function App() {
+  // Use the prefers-color-scheme media query to determine the theme mode
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
+  // Adjusting the theme based on the prefersDarkMode value
   const theme = useMemo(
     () =>
       createTheme({
@@ -39,16 +41,18 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      {/* Initialize Google Maps API with the API key from the environment variables */}
       <GoogleMapApiLoader apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
         <CssBaseline />
         <BrowserRouter>
           <Routes>
+            {/* Defining the routes for the application */}
             <Route path='/' element={<RootLayout />}>
               <Route index element={<Home />} />
               <Route path='about' element={<About />} />
               <Route path='resume' element={<Resume />} />
-              <Route path='portfolio' element={<Portfolio />} />
-              <Route path='portfolio/:id' element={<Activity />} />
+              <Route path='activities' element={<Activities />} />
+              <Route path='activities/:id' element={<Activity />} />
               <Route path='*' element={<p>Not Found</p>} />
             </Route>
           </Routes>

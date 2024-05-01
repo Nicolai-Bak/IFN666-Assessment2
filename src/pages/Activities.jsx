@@ -8,7 +8,7 @@ import { CardSkeleton } from '../components/CardSkeleton';
 import { ErrorCard } from '../components/ErrorCard';
 import { useStravaActivities } from '../hooks/useStravaActivities';
 
-export function Portfolio() {
+export function Activities() {
   const { isLoading, activities, error } = useStravaActivities();
   const [activityTypes, setActivityTypes] = useState([]);
 

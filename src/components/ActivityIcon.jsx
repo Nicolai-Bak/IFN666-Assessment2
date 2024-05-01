@@ -4,6 +4,7 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import PoolIcon from '@mui/icons-material/Pool';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 
+// This component is used to render an icon based on the activity type from Strava
 export function ActivityIcon({ type }) {
   switch (type) {
     case 'Run':

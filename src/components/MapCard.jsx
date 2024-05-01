@@ -4,6 +4,7 @@ import { GoogleMap, Polyline } from 'react-google-map-wrapper';
 import { CardBase } from './CardBase';
 
 export function MapCard({ polyline }) {
+  // This function decodes a polyline string into an array of coordinates (Created by Github Copilot)
   function decodePolyline(polyline) {
     let index = 0,
       lat = 0,
@@ -44,11 +45,14 @@ export function MapCard({ polyline }) {
     return coordinates;
   }
   const coordinates = decodePolyline(polyline);
+
+  // Finding initial center of the map
   const latMedian = coordinates.reduce((acc, coord) => acc + coord.lat, 0) / coordinates.length;
   const lngMedian = coordinates.reduce((acc, coord) => acc + coord.lng, 0) / coordinates.length;
 
   return (
     <CardBase title='Map' img={<MapIcon sx={{ height: '65px', width: '65px', padding: '14.5px' }} />}>
+      {/* Use of third-party library to render Google Maps */}
       <GoogleMap className='map' initialZoom={14} initialCenter={{ lat: latMedian, lng: lngMedian }}>
         <Polyline path={decodePolyline(polyline)} strokeColor='#FF0000' strokeOpacity={1} strokeWeight={2} geodesic />
       </GoogleMap>{' '}

@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "title": "Nicolai Bak",
+    "links": [
+      {
+        "isInNavBar": true,
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "isInNavBar": true,
+        "name": "About",
+        "url": "/about"
+      },
+      {
+        "isInNavBar": true,
+        "name": "Resume",
+        "url": "/resume"
+      },
+      {
+        "isInNavBar": true,
+        "name": "Activity Portfolio",
+        "url": "/activities"
+      },
+      {
+        "isInNavBar": false,
+        "name": "Activity",
+        "url": "/activities/:id"
+      }
+    ]
+  },
+  "footer": "Nicolai Bak, Semester 1 2024, IFN666 Assesment 2",
+  "home": {
+    "imageUrl": "/20240416_100457180_iOS.jpg",
+    "text": "Welcome to my page! Have a look around to learn more about me, my professional experience, and my latest activities."
+  },
+  "about": {
+    "paragraphs": [
+      "With over one year of experience as a software developer and pilot, I have gained valuable skills in designing, developing, and testing software solutions using Java, Azure, and Flutter. I have worked with various clients and teams to deliver high-quality products that meet their needs and expectations.",
+      "As a software pilot at Trifork, I supported the development and implementation of a digital transformation project for a large public organization. I contributed to the agile methodology, the user interface design, and the integration with external systems. As a software developer at twoday IT Minds, I participated in the process and consult department at KMD, where I helped create and improve software applications for different domains and industries.",
+      "I am currently pursuing a master&rsquo;s degree in information technology at QUT, where I aim to deepen my knowledge and skills in software engineering, data science, and artificial intelligence. I am passionate about learning new technologies and applying them to solve real-world problems. I am also interested in collaborating with other professionals and researchers to exchange ideas and insights.",
+      "When I am not coding, I enjoy doing sports. Triathlon traning is my curernt interest. Head to the activities page to see my latest activities."
+    ]
+  },
+  "summary": {
+    "items": [
+      {
+        "title": "Name",
+        "value": "Nicolai Bak"
+      },
+      {
+        "title": "Date of Birth",
+        "value": "31st of May, 1998"
+      },
+      {
+        "title": "Location",
+        "value": "Brisbane, Australia"
+      },
+      {
+        "title": "Mobile",
+        "value": "0449152897"
+      },
+      {
+        "title": "Email",
+        "value": "nicolai.bak@gmail.com"
+      },
+      {
+        "title": "Languages",
+        "value": "Danish, English"
+      }
+    ],
+    "linkedIn": "https://www.linkedin.com/in/nicolai-bak-412378156/"
+  },
+  "jobs": [
+    {
+      "title": "Part time software developer",
+      "date": "2023 - 2024",
+      "company": "Trifork A/S",
+      "description": "Developing image classification mobile application.",
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Azure",
+        "Custom Vision"
+      ]
+    },
+    {
+      "title": "Intern & part time software developer",
+      "date": "2022 - 2023",
+      "company": "Twoday IT Minds",
+      "description": "Developing internal sales system.",
+      "technologies": [
+        "C#",
+        "SQL",
+        "Azure",
+        "Webhooks",
+        "React"
+      ]
+    },
+    {
+      "title": "Part time software developer",
+      "date": "2021 - 2022",
+      "company": "KMD A/S",
+      "description": "Dataanalysis and software development in the public sector.",
+      "technologies": [
+        "Excel",
+        "VBA",
+        "React",
+        "SQL",
+        "C#"
+      ]
+    },
+    {
+      "title": "Economics student and accounts receivable accountant",
+      "date": "2017 - 2021",
+      "company": "Semler Gruppen A/S",
+      "description": "Office student with specialization in economics and accounts receivable.",
+      "technologies": [
+        "Excel",
+        "VBA"
+      ]
+    }
+  ],
+  "educations": [
+    {
+      "title": "Master of Information Technology",
+      "date": "2024 - 2025",
+      "school": "Queensland University of Technology"
+    },
+    {
+      "title": "Bachelor of Engineering in Software Technology",
+      "date": "2020 - 2024",
+      "school": "Aarhus University"
+    },
+    {
+      "title": "Office training with specialization in economics",
+      "date": "2017 - 2019",
+      "school": "Aarhus Business College"
+    },
+    {
+      "title": "Higher Commercial Examination Programme (HHX)",
+      "date": "2014 - 2017",
+      "school": "Silkeborg Business College"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 
+// This component is used to render a page header
 export function PageHeader({ children }) {
   return (
     <Typography

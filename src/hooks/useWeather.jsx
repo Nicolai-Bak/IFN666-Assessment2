@@ -11,7 +11,7 @@ export function useWeather(lat, lon, date) {
       setIsLoading(false);
       return;
     }
-    fetch(`http://api.weatherapi.com/v1/history.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${lat},${lon}&dt=${date}`)
+    fetch(`${import.meta.env.VITE_WEATHER_BASE_URL}/history.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${lat},${lon}&dt=${date}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
