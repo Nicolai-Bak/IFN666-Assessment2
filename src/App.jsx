@@ -10,6 +10,7 @@ import { About } from './pages/About';
 import { Activities } from './pages/Activities';
 import { Activity } from './pages/Activity';
 import { Home } from './pages/Home';
+import { NotFound } from './pages/NotFound';
 import { Resume } from './pages/Resume';
 
 function App() {
@@ -53,7 +54,7 @@ function App() {
               <Route path='resume' element={<Resume />} />
               <Route path='activities' element={<Activities />} />
               <Route path='activities/:id' element={<Activity />} />
-              <Route path='*' element={<p>Not Found</p>} />
+              <Route path='*' element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>
